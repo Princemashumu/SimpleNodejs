@@ -1,19 +1,15 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 
 // Use PORT from environment variables or default to 3000
 const port = process.env.PORT || 3000;
 
-const requestListener = (req, res) => {
-  // Set the response HTTP header with HTTP status and Content type
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
+// Define a simple route
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
-  // Send the response body "Hello World!"
-  res.end('Hello World!');
-};
-
-// Create an HTTP server and listen on the specified port
-const server = http.createServer(requestListener);
-
-server.listen(port, () => {
+// Start the server
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
